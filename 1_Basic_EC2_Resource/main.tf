@@ -1,3 +1,6 @@
+# This scenario shows:
+# - How to create a basic EC2 instance with and ubuntu AMI id.
+
 terraform {
   required_providers {
     aws = {

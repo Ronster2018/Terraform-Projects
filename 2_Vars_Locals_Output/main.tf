@@ -1,3 +1,7 @@
+# This scenario shows:
+# - How to create an EC2 instance using Variables(local and tfvars), and outputs.
+
+
 terraform {
   required_providers {
     aws = {
