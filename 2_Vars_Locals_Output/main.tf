@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 locals {
-  staging_env = "staging"
+  staging_env = "prod"
 }
 
 resource "aws_vpc" "my_vpc" {
@@ -48,7 +48,7 @@ resource "aws_route_table" "my_vpc_us-east-1b_public" {
     gateway_id = aws_internet_gateway.my_vpc_igw.id
   }
   tags = {
-    Name = "${local.staging_env}- Public Subnet Route Table"
+    Name = "${local.staging_env}-Public Subnet Route Table"
   }
 }
 
