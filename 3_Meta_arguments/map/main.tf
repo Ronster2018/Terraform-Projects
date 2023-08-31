@@ -14,6 +14,11 @@ terraform {
 
 #####################################################
 # With for_each
+/*
+    For_each creates a Map object (key:value)
+    Useful when you want to refer to the resource somewhere else in the tf file.
+    Useful if your input is anything other than an integer
+    */
 resource "aws_iam_user" "example" {
   for_each = var.user_names
   name     = each.value

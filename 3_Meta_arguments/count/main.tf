@@ -90,6 +90,17 @@ resource "aws_iam_group_policy_attachment" "dev_group_ec2_policy_attach" {
 
 # --- Username Definition with Count
 resource "aws_iam_user" "user_example" {
+  /*Count deals with a set number (1,2,3...) and creates an ordered list. If it changes, the resource changes.
+
+  Useful if you dont need to refer to the list of objects somewhere else.
+  Useful if you're doing conditional creation.
+  Ex:
+
+  locals {
+    create_resource = true
+  }
+  count = local.create_resource ? 1:0 | if true, create one. Else, create none.
+  */
   count = length(var.user_names)
   name  = var.user_names[count.index]
 }
