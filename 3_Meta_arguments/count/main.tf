@@ -90,9 +90,10 @@ resource "aws_iam_group_policy_attachment" "dev_group_ec2_policy_attach" {
 
 # --- Username Definition with Count
 resource "aws_iam_user" "user_example" {
-  /*Count deals with a set number (1,2,3...) and creates an ordered list. If it changes, the resource changes.
+  /*Count deals with a set number (1,2,3...) and creates an *ordered list*. If it changes, the resource changes.
 
   Useful if you dont need to refer to the list of objects somewhere else.
+  Useful if your input is a simple integer
   Useful if you're doing conditional creation.
   Ex:
 

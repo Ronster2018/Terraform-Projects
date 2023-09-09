@@ -95,7 +95,7 @@ resource "aws_iam_group_policy_attachment" "dev_group_s3_policy_attach" {
 #####################################################
 # With for_each
 resource "aws_iam_user" "user_example" {
-  /*
+    /*
     For_each creates a Map object (key:value)
     Useful when you want to refer to the resource somewhere else in the tf file.
     Useful if your input is anything other than an integer
