@@ -91,17 +91,21 @@ resource "aws_instance" "ubuntu22_02" {
     Name = var.ec2_tag_name
   }
 
-
+  # Provisioners located within the resource only run once...
+  # ---
+  # Added a new file to the remote instance from the local host
   provisioner "file" {
     source      = "test-file.txt"
     destination = "/home/ec2-user/test-file.txt"
   }
 
+  # Creating a new file on the remote host.
   provisioner "file" {
     content     = "I want to copy this string to the destination file => server.txt (using provisioner file content)"
     destination = "/home/ec2-user/server.txt"
   }
 
+  # Here we are able to use remote-exec to execute any command on the remote host.
   provisioner "remote-exec" {
     inline = [
       "touch hello.txt",
@@ -118,8 +122,11 @@ resource "aws_instance" "ubuntu22_02" {
   }
 }
 
+# With a null-resource, any command can be run without creating anything.
 resource "null_resource" "example" {
+  # Provisioners in the null_resource run multiple times and it doesnt depend on a resource.
   provisioner "local-exec" {
+    # With the local-exec, any command can be run in Bash or Powershell on a local machine.
     command     = "'This is test file for null resource local-exec' >>  nullresource-generated.txt"
     interpreter = ["PowerShell", "-Command"]
   }
