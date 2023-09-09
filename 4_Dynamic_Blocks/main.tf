@@ -107,6 +107,7 @@ resource "aws_security_group" "main" {
 resource "aws_instance" "ubuntu2204" {
   ami                         = var.ami
   instance_type               = var.instance_type
+  key_name                    = "default-key-pair"
   vpc_security_group_ids      = [aws_security_group.main.id]
   subnet_id                   = aws_subnet.public.id
   associate_public_ip_address = true

@@ -23,5 +23,5 @@ variable "availability_zone" {
 
 variable "ami" {
   type        = string
-  description = "The Project Region"
+  description = "The AMI ID string value"
 }
