@@ -1,5 +1,5 @@
 # Provisioners provide a way to run any command on the remote or local machine.
-# Provisioners in the resource block onyl run once while createing the resource on the remote instanc. If the resource is created before, the provisioner block in the resource block doesnt run again.
+# Provisioners in the resource block only run once while createing the resource on the remote instanc. If the resource is created before, the provisioner block in the resource block doesnt run again.
 
 terraform {
   required_providers {
@@ -79,7 +79,7 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
-resource "aws_instance" "ubuntu22.02" {
+resource "aws_instance" "ubuntu22_02" {
   ami                         = var.ami
   instance_type               = var.instance_type
   key_name                    = var.key_name
@@ -94,12 +94,12 @@ resource "aws_instance" "ubuntu22.02" {
 
   provisioner "file" {
     source      = "test-file.txt"
-    destination = "home/ubuntu/test-file.txt"
+    destination = "/home/ec2-user/test-file.txt"
   }
 
   provisioner "file" {
     content     = "I want to copy this string to the destination file => server.txt (using provisioner file content)"
-    destination = "home/ubuntu/server.txt"
+    destination = "/home/ec2-user/server.txt"
   }
 
   provisioner "remote-exec" {
@@ -112,8 +112,8 @@ resource "aws_instance" "ubuntu22.02" {
   connection {
     type        = "ssh"
     host        = self.public_ip
-    user        = "ubuntu"
-    private_key = ""
+    user        = "ec2-user"
+    private_key = file("default-key-pair.pem")
     timeout     = "4m"
   }
 }
