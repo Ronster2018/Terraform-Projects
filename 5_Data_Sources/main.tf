@@ -1,4 +1,4 @@
-# Data sources are used to retrieve/fatch/get data from previously created clour objects and resourcescheck.
+# Data sources are used to retrieve/fatch/get data from previously created cloud objects and resources check.
 
 # Filter: used to filter through the existing objects, resources, instances, etc.
 # "depends_on" run the data block after the resource is created
